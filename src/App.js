@@ -24,17 +24,19 @@ function App() {
   }
   function handleUnitChange(e) {
     selectedCoin = e.target.value;
-    // 화면 출력이 안됨
+    console.log("one" + e.target.value);
   }
+  console.log("two" + selectedCoin);
+  // 화면 출력이 안됨
 
   return (
     <div className={styles.main_box}>
-      <h2>Coin Converter 🪙</h2>
+      <h2>Coin Converter</h2>
       <p></p>
       {loading ? (
         <strong>Loading...</strong>
       ) : (
-        <div>
+        <div className={styles.small_box}>
           {" "}
           <select
             onChange={(e) => {
