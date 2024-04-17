@@ -4,7 +4,6 @@ import styles from "./App.module.css";
 function App() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
-  let selectedCoin;
 
   useEffect(() => {
     fetch("https://api.coinpaprika.com/v1/tickers")
@@ -22,19 +21,19 @@ function App() {
   function handleReset() {
     setValue(0);
   }
+  const [symbol, setSymbol] = useState("BTC");
   function handleUnitChange(e) {
-    selectedCoin = e.target.value;
-    console.log("one" + e.target.value);
+    setSymbol(e.target.value);
+    console.log(e);
+    console.log(e.currentTarget);
   }
-  console.log("two" + selectedCoin);
-  // 화면 출력이 안됨
 
   return (
     <div className={styles.main_box}>
       <h2>Coin Converter</h2>
       <p></p>
       {loading ? (
-        <strong>Loading...</strong>
+        <h3>Loading...</h3>
       ) : (
         <div className={styles.small_box}>
           {" "}
@@ -45,7 +44,11 @@ function App() {
           >
             {coins.map((coin) => {
               return (
-                <option key={coin.id} value={coin.symbol}>
+                <option
+                  key={coin.id}
+                  value={coin.symbol}
+                  data-price={coin.quotes.USD.price}
+                >
                   {coin.name} - {coin.symbol} : {coin.quotes.USD.price} USD
                 </option>
               );
@@ -67,9 +70,9 @@ function App() {
               value={value * 0.000015}
               onChange={handleChange}
             />
-            <label htmlFor="unit">{selectedCoin}</label>
+            <label htmlFor="unit"> {symbol}</label>
             <p></p>
-            <button onClick={handleReset}>Reset</button>
+            <button onClick={handleReset}>Reset ↩</button>
           </div>
         </div>
       )}
