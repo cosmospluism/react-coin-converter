@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styles from "./App.module.css";
+import ribbon from "./ribbon.png";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -22,16 +23,19 @@ function App() {
     setValue(0);
   }
   const [symbol, setSymbol] = useState("BTC");
+  const [coinPrice, setCoinPrice] = useState(0);
   function handleUnitChange(e) {
     setSymbol(e.target.value);
-    console.log(e);
-    console.log(e.currentTarget);
+    setCoinPrice(e.target[e.target.selectedIndex].getAttribute("data-price"));
   }
 
   return (
     <div className={styles.main_box}>
-      <h2>Coin Converter</h2>
-      <p></p>
+      <div className={styles.title}>
+        {" "}
+        <h2>Coin Converter</h2>
+        <img src={ribbon} alt="ribbon icon" />
+      </div>
       {loading ? (
         <h3>Loading...</h3>
       ) : (
@@ -55,22 +59,22 @@ function App() {
             })}
           </select>
           <p></p>
-          <div>
+          <div className={styles.label_box}>
             <input
               id="usd"
               type="number"
-              value={value}
+              value={value * coinPrice}
               onChange={handleChange}
             />
-            <label htmlFor="usd"> USD</label>
+            <label htmlFor="usd">USD</label>
             <span> = </span>
             <input
               id="unit"
               type="number"
-              value={value * 0.000015}
+              value={value}
               onChange={handleChange}
             />
-            <label htmlFor="unit"> {symbol}</label>
+            <label htmlFor="unit">{symbol}</label>
             <p></p>
             <button onClick={handleReset}>Reset ↩</button>
           </div>
