@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react-coin-converter/static/css/main.68fe2b4a.css",
+    "main.js": "/react-coin-converter/static/js/main.28064cc6.js",
+    "static/media/ribbon.png": "/react-coin-converter/static/media/ribbon.b1bfc65b1c197f631569.png",
+    "index.html": "/react-coin-converter/index.html",
+    "main.68fe2b4a.css.map": "/react-coin-converter/static/css/main.68fe2b4a.css.map",
+    "main.28064cc6.js.map": "/react-coin-converter/static/js/main.28064cc6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.68fe2b4a.css",
+    "static/js/main.28064cc6.js"
+  ]
+}
