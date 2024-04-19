@@ -29,6 +29,12 @@ function App() {
     setCoinPrice(e.target[e.target.selectedIndex].getAttribute("data-price"));
   }
 
+  const [Inverted, setInverted] = useState(false);
+  function handleInvert() {
+    setValue(0);
+    setInverted((prev) => !prev);
+  }
+
   return (
     <div className={styles.main_box}>
       <div className={styles.title}>
@@ -63,20 +69,25 @@ function App() {
             <input
               id="usd"
               type="number"
-              value={value * coinPrice}
+              value={Inverted ? value * coinPrice : value}
               onChange={handleChange}
+              disabled={Inverted}
+              min={0}
             />
             <label htmlFor="usd">USD</label>
             <span> = </span>
             <input
               id="unit"
               type="number"
-              value={value}
+              value={Inverted ? value : (value / coinPrice).toFixed(6)}
               onChange={handleChange}
+              disabled={!Inverted}
+              min={0}
             />
             <label htmlFor="unit">{symbol}</label>
             <p></p>
             <button onClick={handleReset}>Reset ↩</button>
+            <button onClick={handleInvert}>Invert ⇆</button>
           </div>
         </div>
       )}

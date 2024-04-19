@@ -4,7 +4,6 @@
   background-color: #ffffff;
   padding: 35px;
   border: 5px solid #e9e2f4;
-  /* box-shadow: 0 0 4px 4px #e9e2f4; */
   border-radius: 20px;
 }
 .small_box {
@@ -81,6 +80,7 @@ button {
   font-weight: 900;
   cursor: pointer;
   transition: all 0.2s linear;
+  margin-right: 10px;
 }
 button:hover {
   box-shadow: 0 0 4px 4px #b795ec;
