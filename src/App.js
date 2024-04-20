@@ -5,23 +5,26 @@ import ribbon from "./ribbon.png";
 function App() {
   const [loading, setLoading] = useState(true);
   const [coins, setCoins] = useState([]);
+  const getCoin = async () => {
+    const json = await (
+      await fetch("https://api.coinpaprika.com/v1/tickers")
+    ).json();
+    setCoins(json);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
-      .then((response) => response.json())
-      .then((json) => {
-        setCoins(json);
-        setLoading(false);
-      });
+    getCoin();
   }, []);
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
   function handleChange(e) {
     setValue(e.target.value);
   }
   function handleReset() {
-    setValue(0);
+    setValue("");
   }
+
   const [symbol, setSymbol] = useState("BTC");
   const [coinPrice, setCoinPrice] = useState(0);
   function handleUnitChange(e) {
@@ -42,9 +45,7 @@ function App() {
         <h2>Coin Converter</h2>
         <img src={ribbon} alt="ribbon icon" />
       </div>
-      {loading ? (
-        <h3>Loading...</h3>
-      ) : (
+      {loading ? null : (
         <div className={styles.small_box}>
           {" "}
           <select
